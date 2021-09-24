@@ -1,0 +1,14 @@
+{
+  "name": "popselen",
+  "description": "Popcat, but Selen Tatsuki edition",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "repository": "git@github.com:makemek/popselen.git",
+  "author": "Apipol Niyomsak <apipol.nk@gmail.com>",
+  "license": "MIT"
+}
