@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  redis:
+    container_name: redis
+    image: redis:6
+    ports:
+      - 6317:6317
+    command: redis-server --requirepass ${DB_PASSWORD}
+    volumes:
+      - redisdata:/data
+
+volumes:
+  redisdata:
