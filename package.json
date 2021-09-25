@@ -11,7 +11,13 @@
   "repository": "git@github.com:makemek/popselen.git",
   "author": "Apipol Niyomsak <apipol.nk@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "concurrently yarn:start:api yarn:start:selen",
+    "start:api": "yarn workspace @popselen/api start:dev",
+    "start:selen": "yarn workspace @popselen/selen dev"
+  },
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "husky": "^7.0.2"
   }
 }
