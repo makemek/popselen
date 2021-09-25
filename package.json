@@ -10,5 +10,8 @@
   },
   "repository": "git@github.com:makemek/popselen.git",
   "author": "Apipol Niyomsak <apipol.nk@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^7.0.2"
+  }
 }
