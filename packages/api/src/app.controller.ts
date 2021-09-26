@@ -1,12 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Post } from '@nestjs/common';
+import { PopService } from './pop.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly popService: PopService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('pop')
+  pop() {
+    return this.popService.add('th', 0);
+  }
+
+  @Get('leaderboard')
+  leaderboard() {
+    return this.popService.leaderboard();
   }
 }
