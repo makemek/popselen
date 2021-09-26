@@ -13,7 +13,7 @@ export class AppController {
   }
 
   @Get('leaderboard')
-  leaderboard() {
+  async leaderboard() {
     return this.popService.leaderboard();
   }
 }

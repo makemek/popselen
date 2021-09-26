@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RedisClientType } from 'redis';
 import { REDIS_CON } from './redis/dbConnection';
+import { mapValues, parseInt } from 'lodash';
 
 @Injectable()
 export class PopService {
@@ -13,7 +14,9 @@ export class PopService {
     return this.redis.hIncrBy('selen', country, amount);
   }
 
-  leaderboard() {
-    return this.redis.hGetAll('selen');
+  async leaderboard() {
+    const valuesByCountry = await this.redis.hGetAll('selen');
+
+    return mapValues(valuesByCountry, parseInt);
   }
 }
