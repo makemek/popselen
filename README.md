@@ -8,7 +8,7 @@ docker-compose up -d
 ```
 You can optionally pass `REDIS_PASSWORD` environment variable to docker compose to create a database password.
 
-In `api` package, copy `.env.example` to `.env`
+In `api` and `web` package, copy `.env.example` to `.env`
 
 Install packages
 ```
