@@ -1,9 +1,17 @@
 import { NextPage } from "next";
 import Head from "next/head";
 import Script from "next/script";
+import { apiHttp, API_PATHS } from "../api";
 import config from "../config";
+import { getReCaptchaToken } from "../utils/recaptcha";
 
 export const HomePage: NextPage = () => {
+
+  async function handlePop() {
+    const token = await getReCaptchaToken('pop')
+    await apiHttp.post(API_PATHS.POP, { count: 1, recaptcha: token })
+  }
+
   return (
     <div>
       <Head>
@@ -14,7 +22,7 @@ export const HomePage: NextPage = () => {
       ></Script>
 
       <main>
-        <p className="font-bold">Hello World</p>
+        <p className="font-bold cursor-pointer" onClick={handlePop}>POP</p>
       </main>
     </div>
   )
