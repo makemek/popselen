@@ -14,9 +14,9 @@
   "scripts": {
     "start": "concurrently yarn:start:api yarn:start:web",
     "start:api": "yarn workspace @popselen/api start:dev",
-    "start:web": "yarn workspace @popselen/selen dev",
+    "start:web": "yarn workspace @popselen/web dev",
     "api": "yarn workspace @popselen/api",
-    "web": "yarn workspace @popselen/selen"
+    "web": "yarn workspace @popselen/web"
   },
   "devDependencies": {
     "concurrently": "^6.2.1",
