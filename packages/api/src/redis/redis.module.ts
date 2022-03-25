@@ -8,7 +8,7 @@
  */
 
 import { Global, Inject, Module, OnModuleDestroy } from '@nestjs/common';
-import { RedisClientType } from 'redis/dist/lib/client';
+import { RedisClientType } from 'redis';
 import { dbConnectionFactory, REDIS_CON } from './dbConnection';
 
 @Global()
