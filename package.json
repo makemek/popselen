@@ -12,9 +12,11 @@
   "author": "Apipol Niyomsak <apipol.nk@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently yarn:start:api yarn:start:selen",
+    "start": "concurrently yarn:start:api yarn:start:web",
     "start:api": "yarn workspace @popselen/api start:dev",
-    "start:selen": "yarn workspace @popselen/selen dev"
+    "start:web": "yarn workspace @popselen/selen dev",
+    "api": "yarn workspace @popselen/api",
+    "web": "yarn workspace @popselen/selen"
   },
   "devDependencies": {
     "concurrently": "^6.2.1",
