@@ -1,18 +1,3 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import { HomePage } from '../src/home/HomePage'
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      <Head>
-        <title>PopSelen</title>
-      </Head>
-
-      <main>
-        <p className="font-bold">Hello World</p>
-      </main>
-    </div>
-  )
-}
-
-export default Home
+export default HomePage
