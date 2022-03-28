@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { IpCountry } from './ipCountry.decorator';
 import { PopDto } from './pop.dto';
 import { PopService } from './pop.service';
 
@@ -7,9 +8,8 @@ export class PopController {
   constructor(private readonly popService: PopService) {}
 
   @Post()
-  async pop(@Body() popDto: PopDto) {
-    // TODO get country from ip address
-    await this.popService.add('th', popDto.count);
+  async pop(@Body() popDto: PopDto, @IpCountry() country: string) {
+    await this.popService.add(country, popDto.count);
   }
 
   @Get()
