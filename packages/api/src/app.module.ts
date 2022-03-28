@@ -1,17 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { PopService } from './pop.service';
-import { RedisModule } from './redis/redis.module';
+import { PopModule } from './pop/pop.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    RedisModule,
+    PopModule,
   ],
-  controllers: [AppController],
-  providers: [PopService],
 })
 export class AppModule {}

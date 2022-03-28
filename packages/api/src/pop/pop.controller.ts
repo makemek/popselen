@@ -1,20 +1,18 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PopDto } from './pop.dto';
 import { PopService } from './pop.service';
-import { reCaptchaGuard } from './recaptcha.guard';
 
-@Controller()
-export class AppController {
+@Controller('pop')
+export class PopController {
   constructor(private readonly popService: PopService) {}
 
-  @Post('pop')
-  @UseGuards(reCaptchaGuard('pop'))
+  @Post()
   async pop(@Body() popDto: PopDto) {
     // TODO get country from ip address
     await this.popService.add('th', popDto.count);
   }
 
-  @Get('leaderboard')
+  @Get()
   async leaderboard() {
     return this.popService.leaderboard();
   }

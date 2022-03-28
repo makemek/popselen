@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { RedisClientType } from 'redis';
-import { REDIS_CON } from './redis/dbConnection';
+import { REDIS_CON } from '../redis/dbConnection';
 import { mapValues, parseInt } from 'lodash';
 
 @Injectable()
