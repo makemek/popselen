@@ -4,9 +4,10 @@ Like [Popcat](https://popcat.click), but [Selen Tatsuki](https://www.nijisanji.j
 ## Installation
 Run docker compose to setup a redis database.
 ```
-docker-compose up -d
+cp docker/.env.example docker/.env
+docker-compose -f docker/docker-compose.yml up -d
 ```
-You can optionally pass `REDIS_PASSWORD` environment variable to docker compose to create a database password.
+You can optionally pass `REDIS_PASSWORD` environment variable in `.env` to docker compose to create a database password.
 
 In `api` and `web` package, copy `.env.example` to `.env`
 
