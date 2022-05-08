@@ -3,37 +3,40 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
+  "description": "PopSelen Web",
+  "sideEffects": false,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start",
-    "lint": "next lint",
+    "build": "npm run build:css && remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "start": "remix-serve build",
+    "lint": "eslint",
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "axios": "^0.26.1",
-    "next": "^12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@remix-run/node": "^1.4.3",
+    "@remix-run/react": "^1.4.3",
+    "@remix-run/serve": "^1.4.3",
+    "axios": "^0.27.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-google-recaptcha-v3": "^1.9.7"
   },
   "devDependencies": {
-    "@types/react": "17.0.24",
-    "autoprefixer": "^10.4.4",
-    "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "extracted-loader": "^1.0.7",
-    "file-loader": "^6.2.0",
-    "ignore-loader": "^0.1.2",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "img-loader": "^4.0.0",
-    "lint-staged": "^11.1.2",
-    "next-compose-plugins": "^2.2.1",
-    "next-optimized-images": "^2.6.2",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23",
-    "typescript": "4.4.3",
-    "url-loader": "^4.1.1"
+    "@remix-run/dev": "^1.4.3",
+    "@remix-run/eslint-config": "^1.4.3",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "autoprefixer": "^10.4.7",
+    "concurrently": "^7.1.0",
+    "eslint": "^8.11.0",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.5.5"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "lint-staged": {
     "*.ts": [

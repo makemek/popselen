@@ -23,6 +23,6 @@ yarn start
 Navigate to `localhost:3000`
 
 ## Built with
-- NextJS
-- NestJS
-- Redis
+- [Remix](https://remix.run/)
+- [NestJS](https://nestjs.com/)
+- [Redis](https://redis.io/)
