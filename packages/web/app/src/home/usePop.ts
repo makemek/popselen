@@ -1,19 +1,27 @@
 import { useCallback, useState } from "react";
-import { debounce } from "lodash";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import config from "../config";
 import { apiHttp, API_PATHS } from "../api";
+import { asyncDebounce } from "../utils/asyncDebounce";
 
 export function usePop() {
   const [count, setCount] = useState<number>(0);
   const { executeRecaptcha } = useGoogleReCaptcha();
-  const debounceFn = useCallback(debounce(mutatePop, 200, { maxWait: 1000 }), [
-    executeRecaptcha,
-  ]);
+  const debounceFn = useCallback(
+    asyncDebounce(mutatePop, 200, { maxWait: 1000 }),
+    [executeRecaptcha]
+  );
 
   async function handlePop() {
     setCount((cnt) => cnt + 1);
-    await debounceFn(count + 1);
+    try {
+      await debounceFn(count + 1);
+    } catch (error) {
+      if (error === null) {
+        return;
+      }
+      console.error(error);
+    }
   }
 
   async function mutatePop(cnt: number) {
@@ -37,6 +45,7 @@ export function usePop() {
   }
 
   return {
+    count,
     handlePop,
   };
 }

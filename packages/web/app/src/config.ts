@@ -4,7 +4,7 @@ export type AppConfig = {
 };
 
 const env: AppConfig =
-  typeof document === "undefined"
+  process.env.NODE_ENV === "test" || typeof document === "undefined"
     ? process.env
     : window.__remixContext.routeData.root.$env;
 
