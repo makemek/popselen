@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PopService } from './pop.service';
 import { RedisModule } from '../redis/redis.module';
 import { PopController } from './pop.controller';
+import { PopGateway } from './pop.gateway';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { PopController } from './pop.controller';
     RedisModule,
   ],
   controllers: [PopController],
-  providers: [PopService],
+  providers: [PopService, PopGateway],
 })
 export class PopModule {}
