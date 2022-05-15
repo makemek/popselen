@@ -1,6 +1,7 @@
 export type AppConfig = {
   RECAPTCHA_SITE_KEY: string;
   API_BASE_URL: string;
+  WEBSOCKET_PATH: string;
 };
 
 const env: AppConfig =
@@ -11,6 +12,7 @@ const env: AppConfig =
 const config = Object.freeze({
   RECAPTCHA_SITE_KEY: env.RECAPTCHA_SITE_KEY,
   API_BASE_URL: env.API_BASE_URL,
+  WEBSOCKET_PATH: env.WEBSOCKET_PATH,
 });
 
 export default config;
