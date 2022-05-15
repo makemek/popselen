@@ -9,6 +9,7 @@ import {
 } from "@remix-run/react";
 import config from "./src/config";
 import styles from "./styles/app.css"
+const workerManifest = require('../build/worker.manifest.json')!
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }]
@@ -25,6 +26,7 @@ export async function loader() {
     $env: {
       ...config,
     },
+    worker: workerManifest.worker,
   });
 }
 
