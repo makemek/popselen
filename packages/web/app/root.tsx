@@ -27,6 +27,7 @@ export async function loader() {
       ...config,
     },
     worker: workerManifest.worker,
+    sharedWorker: workerManifest.sharedWorker,
   });
 }
 

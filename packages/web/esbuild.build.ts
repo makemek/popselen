@@ -9,7 +9,7 @@ const { _, ...argv } = yargs(process.argv.slice(2)) || {};
 
 async function build() {
   await esbuild.build({
-    entryPoints: ["./worker/entry.worker.ts"],
+    entryPoints: ["worker/entry.worker.ts", "worker/entry.sharedworker.ts"],
     outdir: "public/build",
     entryNames: "[dir]/[name]-[hash]",
     metafile: true,
@@ -27,12 +27,16 @@ async function build() {
 }
 
 function createManifest(metafile: esbuild.Metafile) {
-  const worker = find(Object.keys(metafile.outputs), (val) =>
-    /(?!\.map)\.js$/.test(val)
+  const outputs = Object.keys(metafile.outputs);
+  const serviceWorker = find(outputs, (val) =>
+    /entry\.worker-.*\.js$/.test(val),
   )!;
-  const workerPath = path.basename(worker);
+  const sharedWorker = find(outputs, (val) =>
+    /entry\.sharedworker-.*\.js$/.test(val),
+  )!;
   const payload = JSON.stringify({
-    worker: `/build/${workerPath}`,
+    worker: `/build/${path.basename(serviceWorker)}`,
+    sharedWorker: `/build/${path.basename(sharedWorker)}`,
   });
   return writeFileSafe("build/worker.manifest.json", payload);
 }
