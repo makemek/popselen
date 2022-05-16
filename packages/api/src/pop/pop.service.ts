@@ -1,6 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
-import { RedisClientType } from 'redis';
-import { REDIS_CON } from '../redis/dbConnection';
+import { Inject, Injectable } from "@nestjs/common";
+import { RedisClientType } from "redis";
+import { REDIS_CON } from "../redis/dbConnection";
 
 @Injectable()
 export class PopService {
@@ -10,6 +10,6 @@ export class PopService {
   ) {}
 
   add(country: string, amount: number) {
-    return this.redis.hIncrBy('selen', country, amount);
+    return this.redis.hIncrBy("selen", country, amount);
   }
 }

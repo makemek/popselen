@@ -1,7 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
-import { LeaderboardService } from './leaderboard.service';
+import { Controller, Get } from "@nestjs/common";
+import { LeaderboardService } from "./leaderboard.service";
 
-@Controller('leaderboard')
+@Controller("leaderboard")
 export class LeaderboardController {
   constructor(private readonly leaderboardService: LeaderboardService) {}
 

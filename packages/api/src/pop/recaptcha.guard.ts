@@ -4,11 +4,11 @@ import {
   Inject,
   mixin,
   Type,
-} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Request } from 'express';
-import axios from 'axios';
-import { stringify } from 'qs';
+} from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { Request } from "express";
+import axios from "axios";
+import { stringify } from "qs";
 
 // https://developers.google.com/recaptcha/docs/v3#site_verify_response
 interface ReCaptchaVerifyTokenResponse {
@@ -17,7 +17,7 @@ interface ReCaptchaVerifyTokenResponse {
   action: string;
   challenge_ts: string;
   hostname: string;
-  'error-codes'?: string[];
+  "error-codes"?: string[];
 }
 
 export function reCaptchaGuard(action?: string): Type<CanActivate> {
@@ -26,8 +26,8 @@ export function reCaptchaGuard(action?: string): Type<CanActivate> {
     protected configService: ConfigService;
 
     async canActivate(context: ExecutionContext) {
-      const secret = this.configService.get('RECAPTCHA_SECRET_KEY');
-      const minScore = +this.configService.get('RECAPTCHA_MIN_SCORE');
+      const secret = this.configService.get("RECAPTCHA_SECRET_KEY");
+      const minScore = +this.configService.get("RECAPTCHA_MIN_SCORE");
       if (!secret) {
         return true;
       }
@@ -37,11 +37,11 @@ export function reCaptchaGuard(action?: string): Type<CanActivate> {
         response: recaptcha,
       };
       const { data } = await axios.post<ReCaptchaVerifyTokenResponse>(
-        'https://www.google.com/recaptcha/api/siteverify',
+        "https://www.google.com/recaptcha/api/siteverify",
         stringify(payload),
         {
           headers: {
-            'content-type': 'application/x-www-form-urlencoded',
+            "content-type": "application/x-www-form-urlencoded",
           },
         },
       );

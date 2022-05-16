@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { LeaderboardModule } from './leaderboard/leaderboard.module';
-import { PopModule } from './pop/pop.module';
+import { Module } from "@nestjs/common";
+import { ConfigModule } from "@nestjs/config";
+import { LeaderboardModule } from "./leaderboard/leaderboard.module";
+import { PopModule } from "./pop/pop.module";
 
 @Module({
   imports: [

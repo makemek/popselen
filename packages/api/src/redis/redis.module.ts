@@ -7,9 +7,9 @@
  * node-redis v4 now supports promise which is a huge plus.
  */
 
-import { Global, Inject, Module, OnModuleDestroy } from '@nestjs/common';
-import { RedisClientType } from 'redis';
-import { dbConnectionFactory, REDIS_CON } from './dbConnection';
+import { Global, Inject, Module, OnModuleDestroy } from "@nestjs/common";
+import { RedisClientType } from "redis";
+import { dbConnectionFactory, REDIS_CON } from "./dbConnection";
 
 @Global()
 @Module({
