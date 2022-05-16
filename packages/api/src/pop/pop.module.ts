@@ -3,7 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PopService } from './pop.service';
 import { RedisModule } from '../redis/redis.module';
 import { PopController } from './pop.controller';
-import { PopGateway } from './pop.gateway';
+import { LeaderboardModule } from '../leaderboard/leaderboard.module';
 
 @Module({
   imports: [
@@ -11,8 +11,9 @@ import { PopGateway } from './pop.gateway';
       isGlobal: true,
     }),
     RedisModule,
+    LeaderboardModule,
   ],
   controllers: [PopController],
-  providers: [PopService, PopGateway],
+  providers: [PopService],
 })
 export class PopModule {}
