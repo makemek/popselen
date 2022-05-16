@@ -9,7 +9,7 @@ export function usePop() {
   const { executeRecaptcha } = useGoogleReCaptcha();
   const debounceFn = useCallback(
     asyncDebounce(mutatePop, 200, { maxWait: 1000 }),
-    [executeRecaptcha]
+    [executeRecaptcha],
   );
 
   async function handlePop() {

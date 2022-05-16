@@ -10,7 +10,7 @@ interface DebounceSettings {
 export function asyncDebounce<F extends (...args: any[]) => Promise<any>>(
   func: F,
   wait?: number,
-  options?: DebounceSettings
+  options?: DebounceSettings,
 ) {
   const debounced = debounce(
     (resolve, reject, args: Parameters<F>) => {
@@ -19,7 +19,7 @@ export function asyncDebounce<F extends (...args: any[]) => Promise<any>>(
         .catch(reject);
     },
     wait,
-    options
+    options,
   );
   return (...args: Parameters<F>): ReturnType<F> =>
     new Promise((resolve, reject) => {
