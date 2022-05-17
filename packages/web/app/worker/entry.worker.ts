@@ -5,21 +5,24 @@
 
 /// <reference lib="WebWorker" />
 
-import { Command, SocketEvent } from "./src/constants";
+import { Command, SocketEvent, WorkerEvent } from "./src/constants";
 import { connectWebsocket } from "./src/socket";
 
 const socket = connectWebsocket(process.env.API_BASE_URL as string);
 
 onmessage = function (event) {
-  const cmd = event.data;
+  const command = event.data;
 
-  if (cmd === Command.LISTEN_LEADERBOARD) {
+  if (command === Command.LISTEN_LEADERBOARD) {
     listenLeaderboard();
   }
 };
 
 function listenLeaderboard() {
   socket.on(SocketEvent.LEADERBOARD_EVENT, (data) => {
-    postMessage(data);
+    postMessage({
+      event: WorkerEvent.LEADERBOARD_EVENT,
+      payload: data,
+    });
   });
 }
