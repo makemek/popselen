@@ -9,7 +9,10 @@ const { _, ...argv } = yargs(process.argv.slice(2)) || {};
 
 async function build() {
   await esbuild.build({
-    entryPoints: ["worker/entry.worker.ts", "worker/entry.sharedworker.ts"],
+    entryPoints: [
+      "app/worker/entry.worker.ts",
+      "app/worker/entry.sharedworker.ts",
+    ],
     outdir: "public/build",
     entryNames: "[dir]/[name]-[hash]",
     metafile: true,
