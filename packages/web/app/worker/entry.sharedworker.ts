@@ -1,15 +1,19 @@
+import { Command, LEADERBOARD_CHANNEL, SocketEvent } from "./src/constants";
 import { connectWebsocket } from "./src/socket";
 
-const browserInstances: MessagePort[] = [];
-const broadcastChannel = new BroadcastChannel("leaderboard-broadcast");
+const broadcastChannel = new BroadcastChannel(LEADERBOARD_CHANNEL);
 const socket = connectWebsocket(process.env.API_BASE_URL as string);
 
-onconnect = function (ev) {
-  const port = ev.ports[0];
+onmessage = function (ev) {
+  const command = ev.data;
 
-  browserInstances.push(port);
-  socket.on("leaderboard", (data) => {
-    broadcastChannel.postMessage(data);
-    browserInstances.map((inst) => inst.postMessage(data));
-  });
+  if (command === Command.LISTEN_LEADERBOARD) {
+    listenLeaderboard();
+  }
 };
+
+function listenLeaderboard() {
+  socket.on(SocketEvent.LEADERBOARD_EVENT, (data) => {
+    broadcastChannel.postMessage(data);
+  });
+}
