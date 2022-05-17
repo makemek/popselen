@@ -42,6 +42,8 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <link rel="modulepreload" href={workerManifest.worker} />
+        <link rel="modulepreload" href={workerManifest.sharedWorker} />
         <LiveReload />
       </body>
     </html>
