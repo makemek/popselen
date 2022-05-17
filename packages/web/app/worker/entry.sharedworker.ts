@@ -1,15 +1,36 @@
+import {
+  Command,
+  LEADERBOARD_CHANNEL,
+  SocketEvent,
+  WorkerEvent,
+} from "./src/constants";
 import { connectWebsocket } from "./src/socket";
 
-const browserInstances: MessagePort[] = [];
-const broadcastChannel = new BroadcastChannel("leaderboard-broadcast");
+const broadcastChannel = new BroadcastChannel(LEADERBOARD_CHANNEL);
 const socket = connectWebsocket(process.env.API_BASE_URL as string);
 
-onconnect = function (ev) {
-  const port = ev.ports[0];
+onconnect = function (event) {
+  const port = event.ports[0];
 
-  browserInstances.push(port);
-  socket.on("leaderboard", (data) => {
-    broadcastChannel.postMessage(data);
-    browserInstances.map((inst) => inst.postMessage(data));
-  });
+  port.onmessage = handleIncommingMessage;
 };
+
+function handleIncommingMessage(messageEvent: MessageEvent<Command>) {
+  const command = messageEvent.data;
+
+  if (command === Command.LISTEN_LEADERBOARD) {
+    listenLeaderboard();
+  }
+}
+
+function listenLeaderboard() {
+  if (socket.hasListeners(SocketEvent.LEADERBOARD_EVENT)) {
+    return;
+  }
+  socket.on(SocketEvent.LEADERBOARD_EVENT, (data) => {
+    broadcastChannel.postMessage({
+      event: WorkerEvent.LEADERBOARD_EVENT,
+      payload: data,
+    });
+  });
+}
