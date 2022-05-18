@@ -7,4 +7,5 @@ export const apiHttp = axios.create({
 
 export const API_PATHS = {
   POP: "pop",
+  LEADERBOARD: "leaderboard",
 };

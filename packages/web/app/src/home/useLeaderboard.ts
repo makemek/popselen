@@ -1,8 +1,11 @@
+import { useLoaderData } from "@remix-run/react";
 import { useState } from "react";
-import type { LeaderboardPayload } from "../utils/WorkerMessageHandler";
+import type { LeaderboardPayload } from "../types/leaderboard.payload";
 
 export function useLeaderboard() {
-  const [leaderboard, setLeaderboard] = useState<Record<string, number>>({});
+  const initialLeaderboard = useLoaderData<Record<string, number>>();
+  const [leaderboard, setLeaderboard] =
+    useState<Record<string, number>>(initialLeaderboard);
 
   function handleUpdate(payload: LeaderboardPayload) {
     const { country, value } = payload;

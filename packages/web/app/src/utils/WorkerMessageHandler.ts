@@ -1,10 +1,7 @@
 import type { WorkerResponse } from "~/worker/src/constants";
 import { WorkerEvent } from "~/worker/src/constants";
+import type { LeaderboardPayload } from "../types/leaderboard.payload";
 
-export type LeaderboardPayload = {
-  country: string;
-  value: number;
-};
 export type LeaderboardCallback = (payload: LeaderboardPayload) => any;
 
 const noOpFunc = () => undefined;
