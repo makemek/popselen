@@ -26,8 +26,10 @@ export async function loader() {
     $env: {
       ...config,
     },
-    worker: workerManifest.worker,
-    sharedWorker: workerManifest.sharedWorker,
+    $manifest: {
+      worker: workerManifest.worker,
+      sharedWorker: workerManifest.sharedWorker,
+    }
   });
 }
 

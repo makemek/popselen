@@ -1,4 +1,5 @@
 import { Command, LEADERBOARD_CHANNEL } from "~/worker/src/constants";
+import config from "../config";
 import type { LeaderboardCallback } from "./WorkerMessageHandler";
 import { WorkerMessageHandler } from "./WorkerMessageHandler";
 
@@ -17,8 +18,7 @@ export function loadWorker() {
 
 function loadSharedWorker(): WorkerAdapter {
   const sharedWorkerName = "popselen-socket-worker";
-  const { sharedWorker } = window.__remixContext.routeData.root;
-  const theSharedWorker = new SharedWorker(sharedWorker, {
+  const theSharedWorker = new SharedWorker(config.SHARED_WORKER, {
     type: "module",
     name: sharedWorkerName,
   });
@@ -38,8 +38,7 @@ function loadSharedWorker(): WorkerAdapter {
 }
 
 function loadWebWorker(): WorkerAdapter {
-  const { worker } = window.__remixContext.routeData.root;
-  const webWorker = new Worker(worker, { type: "module" });
+  const webWorker = new Worker(config.WORKER, { type: "module" });
   const wmh = new WorkerMessageHandler();
 
   webWorker.onmessage = (messageEvent) =>

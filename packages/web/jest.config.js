@@ -3,4 +3,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   verbose: true,
+  moduleNameMapper: {
+    '^~/(.*)$': '<rootDir>/app/$1'
+  },
 };
