@@ -3,6 +3,7 @@ import td from "testdouble";
 import { act, renderHook } from "@testing-library/react-hooks";
 import { useLeaderboard } from "~/src/home/useLeaderboard";
 import { WorkerEvent } from "~/worker/src/constants";
+import { makeLoaderDataWrapper } from "./test-utils/useLoaderDataWrapper";
 
 afterEach(() => {
   global.Worker = undefined as any;
@@ -17,7 +18,10 @@ test("leaderboard update state when shared worker notifies data", () => {
   td.when(new global.BroadcastChannel(td.matchers.anything())).thenReturn(
     instance as BroadcastChannel,
   );
-  const { result } = renderHook(() => useLeaderboard());
+  const { result } = renderHook(
+    () => useLeaderboard(), 
+    { wrapper: makeLoaderDataWrapper({}) }
+  );
   expect(result.current.leaderboard.TH).toBeUndefined();
 
   const workerAdapter = loadWorker();
@@ -41,7 +45,10 @@ test("leaderboard update state when web worker notifies data", () => {
   td.when(
     new global.Worker(td.matchers.anything(), td.matchers.anything()),
   ).thenReturn(instance as Worker);
-  const { result } = renderHook(() => useLeaderboard());
+  const { result } = renderHook(
+    () => useLeaderboard(), 
+    { wrapper: makeLoaderDataWrapper({}) }
+  );
   expect(result.current.leaderboard.TH).toBeUndefined();
 
   const workerAdapter = loadWorker();
