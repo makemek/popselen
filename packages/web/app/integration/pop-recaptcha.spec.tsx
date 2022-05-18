@@ -2,11 +2,11 @@ import { renderHook, act } from '@testing-library/react-hooks'
 import { FC } from 'react'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import td from 'testdouble'
-import { useTdRecaptcha } from '../test-utils/useTdRecaptcha'
+import { useTdRecaptcha } from './test-utils/useTdRecaptcha'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { usePop } from './usePop'
-import { apiHttp } from '../api'
+import { usePop } from '../src/home/usePop'
+import { apiHttp } from '../src/api'
 
 async function generateEndpoint() {
   const server = setupServer(
