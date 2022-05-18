@@ -8,7 +8,7 @@ import { setupServer } from 'msw/node'
 import { usePop } from '../src/home/usePop'
 import { apiHttp } from '../src/api'
 
-async function generateEndpoint() {
+function generateEndpoint() {
   const server = setupServer(
     rest.post(process.env.API_BASE_URL + '/pop', (req, res, ctx) => {
       return res()
@@ -20,16 +20,16 @@ async function generateEndpoint() {
 const server = generateEndpoint()
 
 beforeAll(async () => {
-  (await server).listen()
+  server.listen()
 })
 
 afterEach(async () => {
-  (await server).resetHandlers()
+  server.resetHandlers()
   td.reset()
 })
 
 afterAll(async () => {
-  (await server).close()
+  server.close()
 })
 
 test('should have initial count = 0', async () => {
