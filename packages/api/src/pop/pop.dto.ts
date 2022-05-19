@@ -9,7 +9,7 @@ import {
 export class PopDto {
   @IsNumber()
   @IsPositive()
-  @Max(800, { message: "Sheesh, are you a human? Sus :P" })
+  @Max(100, { message: "Sheesh, are you a human?" })
   count: number;
 
   @IsString()
