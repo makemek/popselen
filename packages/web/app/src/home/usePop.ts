@@ -30,8 +30,11 @@ export function usePop() {
       return;
     }
     const token = await getCaptchaToken("pop");
-    await apiHttp.post(API_PATHS.POP, { count: cnt, recaptcha: token });
-    setCount(0);
+    try {
+      await apiHttp.post(API_PATHS.POP, { count: cnt, recaptcha: token });
+    } finally {
+      setCount(0);
+    }
   }
 
   function getCaptchaToken(action?: string) {
