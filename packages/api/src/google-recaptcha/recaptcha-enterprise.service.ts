@@ -43,9 +43,9 @@ export class RecaptchaEnterpriseService {
 
   verify(response: IAssessment, action: string) {
     const minScore = +this.configService.get("RECAPTCHA_MIN_SCORE");
-    const isScoreOk = response?.riskAnalysis.score >= minScore;
-    const matchAction = response?.tokenProperties.action === action;
-    const tokenValid = response?.tokenProperties.valid;
+    const isScoreOk = response?.riskAnalysis?.score >= minScore;
+    const matchAction = response?.tokenProperties?.action === action;
+    const tokenValid = response?.tokenProperties?.valid;
 
     return tokenValid && matchAction && isScoreOk;
   }
