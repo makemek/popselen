@@ -12,7 +12,7 @@ export async function homePageLoader() {
 }
 
 export function HomePage() {
-  const { handlePop } = usePop()
+  const { handlePop, total, count } = usePop()
   const { handleUpdate, leaderboard } = useLeaderboard()
 
   useEffect(() => {
@@ -25,12 +25,14 @@ export function HomePage() {
     <div>
       <main>
         <p className="font-bold cursor-pointer" onClick={handlePop}>POP</p>
-          {Object.keys(leaderboard).map(key => (
-            <div key={key}>
-              <div className="font-bold text-blue-500">Country: {key}</div>
-              <div>Value: {leaderboard[key]}</div>
-            </div>
-          ))}
+        <div>Total: {total}</div>
+        <div>Count: {count}</div>
+        {Object.keys(leaderboard).map(key => (
+          <div key={key}>
+            <div className="font-bold text-blue-500">Country: {key}</div>
+            <div>Value: {leaderboard[key]}</div>
+          </div>
+        ))}
       </main>
     </div>
   )

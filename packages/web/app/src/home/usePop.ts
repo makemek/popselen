@@ -3,10 +3,12 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import config from "../config";
 import { apiHttp, API_PATHS } from "../api";
 import { asyncDebounce } from "../utils/asyncDebounce";
+import { usePopStorage } from "./usePopStorage";
 
 export function usePop() {
   const [count, setCount] = useState<number>(0);
   const { executeRecaptcha } = useGoogleReCaptcha();
+  const { total, increment } = usePopStorage();
   const debounceFn = useCallback(
     asyncDebounce(mutatePop, 200, { maxWait: 1000 }),
     [executeRecaptcha],
@@ -14,6 +16,7 @@ export function usePop() {
 
   async function handlePop() {
     setCount((cnt) => cnt + 1);
+    increment();
     try {
       await debounceFn(count + 1);
     } catch (error) {
@@ -49,6 +52,7 @@ export function usePop() {
 
   return {
     count,
+    total,
     handlePop,
   };
 }
