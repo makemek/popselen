@@ -1,4 +1,5 @@
 export type AppConfig = {
+  RECAPTCHA_ENTERPRISE: string;
   RECAPTCHA_SITE_KEY: string;
   API_BASE_URL: string;
   WEBSOCKET_PATH: string;
@@ -20,6 +21,7 @@ const manifest: Manifest = serverside
   : window.__remixContext.routeData.root.$manifest;
 
 const config = Object.freeze({
+  RECAPTCHA_ENTERPRISE: env.RECAPTCHA_ENTERPRISE,
   RECAPTCHA_SITE_KEY: env.RECAPTCHA_SITE_KEY,
   API_BASE_URL: env.API_BASE_URL,
   WEBSOCKET_PATH: env.WEBSOCKET_PATH,

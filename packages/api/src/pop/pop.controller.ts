@@ -3,7 +3,7 @@ import { LeaderboardService } from "src/leaderboard/leaderboard.service";
 import { IpCountry } from "./ipCountry.decorator";
 import { PopDto } from "./pop.dto";
 import { PopService } from "./pop.service";
-import { reCaptchaGuard } from "./recaptcha.guard";
+import { reCaptchaGuard } from "../google-recaptcha/recaptcha.guard";
 
 @Controller("pop")
 export class PopController {

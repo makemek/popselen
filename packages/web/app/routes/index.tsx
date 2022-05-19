@@ -8,7 +8,7 @@ export default function() {
   return (
     <>
       {!config.RECAPTCHA_SITE_KEY && <script>{'window.process = {}'}</script>}
-      <GoogleReCaptchaProvider reCaptchaKey={config.RECAPTCHA_SITE_KEY}>
+      <GoogleReCaptchaProvider reCaptchaKey={config.RECAPTCHA_SITE_KEY} useEnterprise={config.RECAPTCHA_ENTERPRISE === 'true'}>
         <HomePage />
       </GoogleReCaptchaProvider>
     </>

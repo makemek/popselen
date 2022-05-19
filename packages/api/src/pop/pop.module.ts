@@ -4,6 +4,7 @@ import { PopService } from "./pop.service";
 import { RedisModule } from "../redis/redis.module";
 import { PopController } from "./pop.controller";
 import { LeaderboardModule } from "../leaderboard/leaderboard.module";
+import { RecaptchaModule } from "../google-recaptcha/recaptcha.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { LeaderboardModule } from "../leaderboard/leaderboard.module";
     }),
     RedisModule,
     LeaderboardModule,
+    RecaptchaModule,
   ],
   controllers: [PopController],
   providers: [PopService],
